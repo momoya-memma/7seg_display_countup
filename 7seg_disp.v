@@ -48,6 +48,7 @@ module top_module(
     /*表示桁切り替え信号selを高速で切り替える*/
     toggle_sel toggle_sel(.clk(CLK100MHZ), .rst(ck_rst), .sel(sel));
 
+    /*sel信号に応じて、表示内容を切り替える。*/
     toggle_digit toggle_digit(.clk(CLK100MHZ), .sel(sel), .digit1(disp_signal_digit1), .digit2(disp_signal_digit2), .disp(disp_signal));
 
     assign ja[0] = disp_signal[0];
@@ -58,9 +59,6 @@ module top_module(
     assign jb[1] = disp_signal[5];
     assign jb[2] = disp_signal[6];
     assign jb[3] = sel;
-
-
-    
 endmodule
 
 module one_sec_counter(input wire clk, input wire rst, output reg [7:0] num);
